@@ -29,6 +29,7 @@ export default function HomePage() {
             >
               <Stack.Item fill>
                 <TextContainer spacing="loose">
+                  <h1>Welcome to Star Rating App</h1>
                   <Heading>Nice work on building a Shopify app 🎉</Heading>
                   <p>
                     Your app is ready to explore! It contains everything you
