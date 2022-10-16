@@ -278,7 +278,7 @@ export function QRCodeForm({ QRCode: InitialQRCode }) {
                   options={discountOptions}
                   onChange={handleDiscountChange}
                   value={discountId.value}
-                  disabled={isLoadingDiscounts || discountsError}
+                  disabled={isLoadingDiscounts}
                   labelHidden
                 />
               </Card>
