@@ -1,87 +1,60 @@
+import { useNavigate, TitleBar, Loading } from "@shopify/app-bridge-react";
 import {
   Card,
-  Page,
+  EmptyState,
   Layout,
-  TextContainer,
-  Image,
-  Stack,
-  Link,
-  Heading,
+  Page,
+  SkeletonBodyText,
 } from "@shopify/polaris";
-import { TitleBar } from "@shopify/app-bridge-react";
 
-import { trophyImage } from "../assets";
+function HomePage() {
+  const navigate = useNavigate();
+  const isLoading = false;
+  const isRefetching = false;
+  const QRCodes = [];
 
-import { ProductsCard } from "../components";
+  const loadingMarkup = isLoading ? (
+    <Card sectioned>
+      <Loading />
+      <SkeletonBodyText />
+    </Card>
+  ) : null;
 
-export default function HomePage() {
+  const emptyStateMarkup =
+    !isLoading && !QRCodes.length ? (
+      <Card sectioned>
+        <EmptyState
+          heading="Create unique QR codes for your product"
+          image="https://cdn.shopify.com/s/files/1/0262/4071/2726/files/emptystate-files.png"
+          action={{
+            content: "Create QR Code",
+            onAction: () => navigate("/qrcodes/new"),
+          }}
+        >
+          <p>
+            Allow customers to scan codes and buy products using their phones.
+          </p>
+        </EmptyState>
+      </Card>
+    ) : null;
+
   return (
-    <Page narrowWidth>
-      <TitleBar title="App name" primaryAction={null} />
+    <Page>
+      <TitleBar
+        title="QR Codes"
+        primaryAction={{
+          content: "Create QR Code",
+          onAction: () => navigate("/qrcodes/new"),
+        }}
+      />
       <Layout>
         <Layout.Section>
-          <Card sectioned>
-            <Stack
-              wrap={false}
-              spacing="extraTight"
-              distribution="trailing"
-              alignment="center"
-            >
-              <Stack.Item fill>
-                <TextContainer spacing="loose">
-                  <h1>Welcome to Star Rating App</h1>
-                  <Heading>Nice work on building a Shopify app 🎉</Heading>
-                  <p>
-                    Your app is ready to explore! It contains everything you
-                    need to get started including the{" "}
-                    <Link url="https://polaris.shopify.com/" external>
-                      Polaris design system
-                    </Link>
-                    ,{" "}
-                    <Link url="https://shopify.dev/api/admin-graphql" external>
-                      Shopify Admin API
-                    </Link>
-                    , and{" "}
-                    <Link
-                      url="https://shopify.dev/apps/tools/app-bridge"
-                      external
-                    >
-                      App Bridge
-                    </Link>{" "}
-                    UI library and components.
-                  </p>
-                  <p>
-                    Ready to go? Start populating your app with some sample
-                    products to view and test in your store.{" "}
-                  </p>
-                  <p>
-                    Learn more about building out your app in{" "}
-                    <Link
-                      url="https://shopify.dev/apps/getting-started/add-functionality"
-                      external
-                    >
-                      this Shopify tutorial
-                    </Link>{" "}
-                    📚{" "}
-                  </p>
-                </TextContainer>
-              </Stack.Item>
-              <Stack.Item>
-                <div style={{ padding: "0 20px" }}>
-                  <Image
-                    source={trophyImage}
-                    alt="Nice work on building a Shopify app"
-                    width={120}
-                  />
-                </div>
-              </Stack.Item>
-            </Stack>
-          </Card>
-        </Layout.Section>
-        <Layout.Section>
-          <ProductsCard />
+          {loadingMarkup}
+          {emptyStateMarkup}
         </Layout.Section>
       </Layout>
     </Page>
   );
 }
+
+export default HomePage;
