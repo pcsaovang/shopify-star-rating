@@ -1,5 +1,6 @@
 import { TitleBar } from "@shopify/app-bridge-react";
 import { Page } from "@shopify/polaris";
+import { QRCodeForm } from "../../components";
 
 function ManageCode() {
   const breadcrumbs = [
@@ -14,8 +15,8 @@ function ManageCode() {
       <TitleBar
         title="Create new QR code"
         breadcrumbs={breadcrumbs}
-        primaryAction={null}
       />
+      <QRCodeForm />
     </Page>
   );
 }

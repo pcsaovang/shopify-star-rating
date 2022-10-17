@@ -52,7 +52,6 @@ function QRCodeEdit() {
       <TitleBar
         title="Edit QR code"
         breadcrumbs={breadcrumbs}
-        primaryAction="null"
       />
       <QRCodeForm QRCode={QRCode} />
     </Page>
