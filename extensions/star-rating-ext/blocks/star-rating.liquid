@@ -1,0 +1,19 @@
+<span style="color: {{ block.setting.color }}">
+  App blocks let you build powerful integrations with online store themes.
+</span>
+{% schema %}
+{
+  "name": "Star rating extension",
+  "target": "section",
+  "stylesheet": "star-rating-ext.css",
+  "javascript": "star-rating-ext.js",
+  "settings": [
+    {
+      "label": "Color",
+      "id": "color",
+      "type": "color",
+      "default": "#000"
+    }
+  ]
+}
+{% endschema %}
